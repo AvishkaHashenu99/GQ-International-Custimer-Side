@@ -1,29 +1,32 @@
-import React,{ useState }  from 'react';
-import jsPDF from "jspdf";
+import React, { useState } from 'react';
+import jsPDF from 'jspdf';
 import NavBar from './components/common/customerView/NavBar';
 //import NavBar from './components/common/adminView/NavBar';
 import FooterPage from './components/common/customerView/Footer';
 import SlideShow from './components/Pages/SlideShow/SlideShow';
-import {BrowserRouter ,  Switch, Route,Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import Adminlogin from "./components/Pages/Admin/adminlogin";
-import Debtpay from "./components/Pages/CR/PayForm";
-import Search from "./components/modules/CustomerPageModules/Customer/SearchBar";
-import LoginScreen from "./components/Pages/Customer/LoginScreen";
-import RegisterScreen from "./components/Pages/Customer/RegisterScreen";
-import Mypurchases from "./components/Pages/Customer/Mypurchases";
-import SinglePurchase from "./components/Pages/Customer/SinglePurchase";
-import SearchBar from "./components/modules/CustomerPageModules/Customer/SearchBar";
-import CreatePurchase from "./components/Pages/Customer/CreatePurchase";
-import CustomerPurchasesReport from "./components/Pages/Customer/CustomerPurchasesReport";
-import "./bootstrap.min.css";
-import ProfileScreen from "./components/Pages/Customer/ProfileScreen";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Adminlogin from './components/Pages/Admin/adminlogin';
+import Debtpay from './components/Pages/CR/PayForm';
+import Search from './components/modules/CustomerPageModules/Customer/SearchBar';
+import LoginScreen from './components/Pages/Customer/LoginScreen';
+import RegisterScreen from './components/Pages/Customer/RegisterScreen';
+import Mypurchases from './components/Pages/Customer/Mypurchases';
+import SinglePurchase from './components/Pages/Customer/SinglePurchase';
+import SearchBar from './components/modules/CustomerPageModules/Customer/SearchBar';
+import CreatePurchase from './components/Pages/Customer/CreatePurchase';
+import CustomerPurchasesReport from './components/Pages/Customer/CustomerPurchasesReport';
+import './bootstrap.min.css';
+import ProfileScreen from './components/Pages/Customer/ProfileScreen';
 
 //screens
 import ItemHomeScreen from './screens/ItemHomeScreen';
 import ItemScreen from './screens/ItemScreen';
 import CartScreen from './screens/CartScreen';
+
+import ContactUs from './components/modules/CustomerPageModules/ContactUs/ContactUsForm/mailer';
+
 //import HomeScreen from './screens/HomeScreen';
 //import ProductScreen from './screens/ProductScreen';
 //import Item from './components/modules/AdminPageModules/Stock/createItem';
@@ -38,32 +41,27 @@ import CartScreen from './screens/CartScreen';
 //import itemDetails from './components/modules/AdminPageModules/Stock/itemDetails';
 
 function App() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   console.log(search);
   return (
-   
     <BrowserRouter>
-       <NavBar/>
-        <sideDrawer/>
-        <backDrop/>
-        <main>
+      <NavBar />
+      <sideDrawer />
+      <backDrop />
+      <main>
         <Switch>
+          <Route exact path="/items" component={ItemHomeScreen}></Route>
+          <Route exact path="/item/:id" component={ItemScreen}></Route>
 
-        <Route exact path="/items" component={ItemHomeScreen}>
-            </Route>
-            <Route exact path="/item/:id" component={ItemScreen}>
-            </Route>
+          <Route exact path="/cart" component={CartScreen} />
 
-            
-            <Route exact path="/cart" component={CartScreen}/>
-
-    <Route path="/purchases">
+          <Route path="/purchases">
             <hr />
             <SearchBar setSearch={setSearch} />
             <Mypurchases search={search} />
           </Route>
-            
-            <Route path="/register">
+
+          <Route path="/register">
             <RegisterScreen />
           </Route>
 
@@ -90,25 +88,15 @@ function App() {
           <Route path="/adminlogin">
             <Adminlogin />
           </Route>
-           
-       
-  
-            <Route exact path ="/" component={SlideShow}/>
 
-        
+          <Route exact path="/contactUs" component={ContactUs} />
 
-         
+          <Route exact path="/" component={SlideShow} />
         </Switch>
-       <FooterPage/>
-        </main>
+        <FooterPage />
+      </main>
     </BrowserRouter>
-    
-
-   
   );
 }
 
-export default App; 
-
-
-
+export default App;
