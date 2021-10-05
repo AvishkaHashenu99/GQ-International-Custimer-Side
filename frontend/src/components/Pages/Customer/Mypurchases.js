@@ -99,7 +99,7 @@ const Mypurchases = ({ search }) => {
         .map((purchase) => (
           <Accordion key={purchase._id} id="content">
             <Card style={{ margin: 10 }}>
-              <Card.Header style={{ background: "#94505E", display: "flex" }}>
+              <Card.Header style={{ background: "#D3D3D3", display: "flex" }}>
                 <span
                   style={{
                     color: "black",
@@ -136,10 +136,10 @@ const Mypurchases = ({ search }) => {
                   </Button>
                 </div>
               </Card.Header>
-              <Card.Body style={{ background: "#EDADBA" }}>
+              <Card.Body style={{ background: "#FFF" }}>
                 <h6 style={{ color: "green" }}>{purchase.content}</h6>
               </Card.Body>
-              <Card.Body style={{ background: "#EDADBA" }}>
+              <Card.Body style={{ background: "#FFF" }}>
                 <h4>
                   <Badge variant="success">
                     Category - {purchase.category}
