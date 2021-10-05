@@ -22,7 +22,7 @@ const LoginScreen = () => {
   useEffect(() => {
     const customerInfo = localStorage.getItem("customerInfo");
     if (customerInfo) {
-      history.push("/purchases");
+      history.push("/profile");
     }
   }, [history, customerInfo]);
 

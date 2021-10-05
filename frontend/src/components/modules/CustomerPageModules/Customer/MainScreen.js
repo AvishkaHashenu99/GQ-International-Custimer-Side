@@ -16,12 +16,14 @@ const MainScreen = ({ title, children }) => {
         color: "#fff",
       }}
     >
-      <Container style={{ backgroundColor: "#b82121" }}>
+      <Container style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
         <Row>
           <div className="page">
             {title && (
               <>
-                <h1 className="heading">{title}</h1>
+                <h1 className="heading" style={{ color: "red" }}>
+                  {title}
+                </h1>
                 <hr />
               </>
             )}

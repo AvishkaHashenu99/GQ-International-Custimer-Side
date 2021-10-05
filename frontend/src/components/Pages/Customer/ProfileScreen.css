@@ -13,3 +13,28 @@
     flex-direction: column-reverse;
   }
 }
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #7b4397 0%,
+    #dc2430 51%,
+    #7b4397 100%
+  );
+}
+.btn-grad {
+  width: 200px;
+  height: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}

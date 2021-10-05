@@ -1,136 +1,116 @@
-import React, {useState} from 'react'
-import {Link,useHistory} from 'react-router-dom'
-import GQ from '../../../images/footer-logo.png'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import GQ from "../../../images/footer-logo.png";
 //import { Button } from './Button';
-import './NavBar.css';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "./NavBar.css";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //newly added
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../actions/customerActions";
 
-
 function NavBar() {
-    /*newly added*/
-    const dispatch = useDispatch();
+  /*newly added*/
+  const dispatch = useDispatch();
 
-    const customerLogin = useSelector((state) => state.customerLogin);
-    const { customerInfo } = customerLogin;
+  const customerLogin = useSelector((state) => state.customerLogin);
+  const { customerInfo } = customerLogin;
 
-    const logoutHandler = () => {
-        dispatch(logout());
-        history.push("/");
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/");
   };
 
-    /*newly added*/
+  /*newly added*/
 
-    const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false);
 
-    const handleclick = () => setClick(!click);
+  const handleclick = () => setClick(!click);
 
-    const closeMobileMenu = () => setClick(false);
+  const closeMobileMenu = () => setClick(false);
 
+  const [button, setButton] = useState(true);
 
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
 
-    const  [button, setButton] = useState (true);
+  window.addEventListener("resize", showButton);
 
+  const history = useHistory();
 
+  return (
+    <>
+      <nav className="navbar">
+        <div className="navbar-container">
+          <Link to="/" className="navbar-log">
+            <img
+              src={GQ}
+              height="90px"
+              width="80px;"
+              alt="GQ logo"
+              className="gq-logo"
+            />
+          </Link>
 
-    const showButton = () => {
-        if (window.innerWidth <= 960){
-            setButton (false);
+          <h3 className="gq-title">
+            GQ IN<span style={{ color: "red" }}>TERNATIONAL</span>
+          </h3>
 
+          <div className="menu-icon" onClick={handleclick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          </div>
 
-        }else{
-            setButton (true);
-        }
-    };
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item" style={{ backgroundColor: "#2f2d2d" }}>
+              <Link to="/" className="nav-links" onclick={closeMobileMenu}>
+                HOME
+              </Link>
+            </li>
 
-    window.addEventListener('resize', showButton);
+            <li className="nav-item">
+              <Link to="/items" className="nav-links" onclick={closeMobileMenu}>
+                ITEMS
+              </Link>
+            </li>
 
-    const history = useHistory();
+            <li className="nav-item">
+              <Link to="/" className="nav-links" onclick={closeMobileMenu}>
+                CONTACT US
+              </Link>
+            </li>
 
-    return (
-        <>
-            <nav className='navbar'>
+            <li className="nav-item">
+              <Link
+                to="/SEARCH"
+                className="nav-links"
+                onclick={closeMobileMenu}
+              >
+                ABOUT US
+              </Link>
+            </li>
+          </ul>
 
+          <Link
+            class="btn-grad4"
+            style={{
+              marginBottom: "10px",
+              borderRadius: "15px",
+            }}
+          >
+            <Link to="/login"> {customerInfo ? "Profile" : "login"}</Link>
+          </Link>
 
-                <div className="navbar-container">
-
-                        <Link to= '/' className='navbar-log'>
-                            <img src={GQ} height='90px' width='80px;' alt="GQ logo" className="gq-logo"/>
-                            
-                         </Link>
-
-                         <h3 className='gq-title'>GQ IN<span style={{color:'red'}}>TERNATIONAL</span></h3>
-
-                        <div className= 'menu-icon' onClick = {handleclick}>
-
-                            <i className={click ? 'fas fa-times': 'fas fa-bars'}/>
-
-                        </div>
-
-                        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                            <li className = 'nav-item' style={{backgroundColor:'#2f2d2d'}}>
-                                <Link to='/' className = 'nav-links' onclick = {closeMobileMenu}>
-                                    HOME
-                                </Link>
-                            </li>
-
-                            <li className = 'nav-item'>
-                                <Link to='/items' className = 'nav-links' onclick = {closeMobileMenu}>
-                                    ITEMS
-                                </Link>
-                            </li>
-
-                            <li className = 'nav-item'>
-                                <Link to='/' className = 'nav-links' onclick = {closeMobileMenu}>
-                                    CONTACT US
-                                </Link>
-                                
-                            </li>
-
-
-                            <li className = 'nav-item'>
-                                <Link
-                                    to="/SEARCH"
-                                    className="nav-links"
-                                    onclick={closeMobileMenu}
-                                >
-                                    ABOUT US
-                                </Link>
-                                
-                            </li>
-
-                            <li className = 'nav-item'>
-                                <Link 
-                                to="/register"
-                                className="nav-links"
-                                onclick={closeMobileMenu}>
-                                    Sign Up
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <Button
-                            type="button"
-                            class="btn btn-danger"
-                            style={{ marginBottom: "10px", borderRadius: "15px"}}
-                        >
-                            <Link to="/login"> LOGIN </Link>
-                        </Button>
-
-                        <ul style={{ marginTop: "70px" }}>
+          <ul style={{ marginTop: "70px" }}>
             <li>
               <Nav>
                 <NavDropdown title={customerInfo?.name} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/profile">
-                    My Profile
-                  </NavDropdown.Item>
-
-                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
@@ -141,8 +121,7 @@ function NavBar() {
         </div>
       </nav>
     </>
-      
-    );
+  );
 }
 
 export default NavBar;

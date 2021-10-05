@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const Search = ({ setSearch }) => {
   return (
     <Navbar expand="lg" bg="primary">
-      <Container style={{ backgroundColor: "#b82121" }}>
+      <Container style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
@@ -29,7 +29,9 @@ const Search = ({ setSearch }) => {
 
           <Nav>
             <Nav.Link href="/">
-              <Link to="/purchases">My purchases</Link>
+              <Link to="/purchases">
+                <b style={{ color: "red" }}>My purchases</b>
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
