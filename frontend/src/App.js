@@ -24,6 +24,12 @@ import ProfileScreen from "./components/Pages/Customer/ProfileScreen";
 import ItemHomeScreen from "./screens/ItemHomeScreen";
 import ItemScreen from "./screens/ItemScreen";
 import CartScreen from "./screens/CartScreen";
+
+
+
+import ContactUs from './components/modules/CustomerPageModules/ContactUs/ContactUsForm/mailer';
+
+
 //import HomeScreen from './screens/HomeScreen';
 //import ProductScreen from './screens/ProductScreen';
 //import Item from './components/modules/AdminPageModules/Stock/createItem';
@@ -38,7 +44,7 @@ import CartScreen from "./screens/CartScreen";
 //import itemDetails from './components/modules/AdminPageModules/Stock/itemDetails';
 
 function App() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   console.log(search);
   return (
     <BrowserRouter>
@@ -84,6 +90,10 @@ function App() {
           <Route path="/adminlogin">
             <Adminlogin />
           </Route>
+
+
+          <Route exact path="/contactUs" component={ContactUs} />
+
 
           <Route exact path="/" component={SlideShow} />
         </Switch>
